@@ -1,0 +1,11 @@
+{
+  "nodes": {
+    "node1": {
+      "cores": 32,
+      "memory": 128,
+      "features": ["CPU", "GPU"],
+      "processing_speed": {"CPU": 1, "GPU": 0.01},
+      "data_transfer_rate": {"CPU_GPU": 1000}
+    }
+  }
+}
