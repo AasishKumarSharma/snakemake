@@ -1,0 +1,28 @@
+import sys
+import os
+
+# Adjust this path to the correct path of your scheduler module
+from plugins.schedulers.milp_scheduler import MILPScheduler
+
+configfile: "optimizers/snakemake_ext/profiles/my_hpc_profile/config.yaml"
+
+onstart:
+    def custom_scheduler(workflow):
+        scheduler = MILPScheduler(workflow, workflow.dag)
+        workflow.scheduler = scheduler
+        print("MILP Scheduler successfully initialized.")
+
+rule all:
+    input:
+        "results/task1.done",
+        "results/task2.done"
+
+rule task1:
+    output: "results/task1.done"
+    resources: cores=4, mem_mb=8000, duration=2, data=1
+    shell: "sleep 2 && touch {output}"
+
+rule task2:
+    output: "results/task2.done"
+    resources: cores=8, mem_mb=16000, duration=3, data=2
+    shell: "sleep 3 && touch {output}"

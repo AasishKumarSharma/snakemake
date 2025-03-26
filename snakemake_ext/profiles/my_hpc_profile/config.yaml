@@ -1,0 +1,4 @@
+scheduler: "plugins.schedulers.milp_scheduler.MILPScheduler"
+system_resources: "profiles/my_hpc_profile/system_characteristics.json"
+alpha: 1
+beta: 1
